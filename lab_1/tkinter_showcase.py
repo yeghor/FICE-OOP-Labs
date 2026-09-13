@@ -55,14 +55,25 @@ kill_buttom.pack()
 """Entry"""
 
 # # cannot use grid if pack is already used
-tk.Label(root, text="First Name").grid(row=0, column=0)
-tk.Label(root, text="Last Name").grid(row=1, column=0)
+# tk.Label(root, text="First Name").grid(row=0, column=0)
+# tk.Label(root, text="Last Name").grid(row=1, column=0)
 
-entry1 = tk.Entry(root)
-entry2 = tk.Entry(root)
+# entry1 = tk.Entry(root)
+# entry2 = tk.Entry(root)
 
-entry1.grid(row=0, column=1)
-entry2.grid(row=1, column=1)
+# entry1.grid(row=0, column=1)
+# entry2.grid(row=1, column=1)
+
+# TopLevel external windows
+
+def open_context_window_cb(name: str):
+    toplevel_window = tk.Toplevel(root)
+    tk.Label(toplevel_window, text=name).pack()
+    tk.Button(toplevel_window, text="Close", command=toplevel_window.destroy).pack()
+
+
+context_window_button = tk.Button(root, text="Open context window", command=lambda: open_context_window_cb("Context window №1"))
+context_window_button.pack()
 
 if __name__ == "__main__":
     # starts event loop, window will accept user commands until the window is closed
