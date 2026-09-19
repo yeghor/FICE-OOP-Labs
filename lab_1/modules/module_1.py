@@ -1,33 +1,42 @@
 """Dropdown module with five selectable options."""
 
 import tkinter as tk
-from typing import Any, Callable
+from typing import List, Callable
 
-from .module_abstract import ModuleAbstract
+from .module_abstract import InputModuleAbstract
 
 
-class ListboxModule(ModuleAbstract):
+class ListboxModule(InputModuleAbstract):
     def __init__(
         self,
         root: tk.Tk,
-        apply_new_label_text_cb: Callable[[str], None] | None,
+        cb: Callable[[str], None],
+        options: List[str] = None,
     ):
-        super().__init__(root, apply_new_label_text_cb)
+        super().__init__(root, "listbox_module", align_buttons=True)
 
-        self._top = tk.Toplevel(self._root, name="listbox_module")
+        self._top.geometry("200x100")
+
+        self._cb = cb
 
         self._options = ("Apple", "Banana", "Cherry", "Orange", "Strawberry")
         self._selected_value = tk.StringVar(self._top, value=self._options[0])
-        # self._selected_value.trace_add(mode="write", callback=self.update_current_value)
 
         self._dropdown = tk.OptionMenu(self._top, self._selected_value, *self._options)
-        self._dropdown.pack()
 
-        self._submit_button = tk.Button(self._top, text="Submit", command=self.submit)
-        self._submit_button.pack()
+        if self._using_grid:
+            self._dropdown.grid(
+                row=0,
+                columnspan=self._n_initial_columns+1,
+                sticky="ew"
+            )
+        else:
+            self._dropdown.pack()
 
-    def submit(self) -> None:
-        if self._apply_label_cb:
-            self._apply_label_cb(self._selected_value.get())
+    def _submit(self) -> None:
+        if self._cb:
+            self._cb(self._selected_value.get())
+        self._top.destroy()
 
+    def _cancel(self) -> None:
         self._top.destroy()

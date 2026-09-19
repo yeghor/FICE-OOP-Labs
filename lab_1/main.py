@@ -2,11 +2,12 @@ import tkinter as tk
 from modules import *
 
 root = tk.Tk(screenName="main", baseName="lab-1")
+root.geometry("500x400")
 
-def create_popup(module: ModuleAbstract, *args, **kwargs):
+def create_popup(module: InputModuleAbstract, *args, **kwargs) -> None:
     module(*args, **kwargs)
 
-showcase_text = tk.Label(text="")
+showcase_text = tk.Label(text="No options were chosen")
 showcase_text.pack()
 
 def showcase_apply(val: str) -> None:

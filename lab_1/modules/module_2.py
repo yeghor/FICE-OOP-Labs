@@ -1,24 +1,32 @@
-"""Variant 0 ((12 + 1) mod 4 = 3)"""
 import tkinter as tk
-from .module_abstract import ModuleAbstract
+from .module_abstract import InputModuleAbstract
 from typing import Callable
 
-class InputModule(ModuleAbstract):
-    def __init__(self, root: tk.Tk, apply_new_label_text_cb: Callable[[str], None] | None):
-        super().__init__(root, apply_new_label_text_cb)
+class InputModule(InputModuleAbstract):
+    def __init__(self, root: tk.Tk, cb: Callable[[str], None] | None):
+        super().__init__(root, "input_module", align_buttons=True)
 
-        self._top = tk.Toplevel(self._root, name="input_module")
+        self._top.geometry("200x100")
+
+        self._cb = cb
 
         self._input_val = tk.StringVar()
-        # self._input_val.trace_add(mode="write", callback=self.update_current_value)
         self._input = tk.Entry(self._top, textvariable=self._input_val)
-        self._input.pack()
 
-        self._submit_button = tk.Button(self._top, command=self.submit)
-        self._submit_button.pack()
-        
-    def submit(self) -> None:
-        if self._apply_label_cb:
-            self._apply_label_cb(self._input_val.get())
+        if self._using_grid:
+            self._input.grid(
+                row=0,
+                columnspan=self._n_initial_columns+1,
+                sticky="ew"
+            )
+        else:
+            self._input.pack()
 
+    def _submit(self) -> None:
+        if self._cb:
+            self._cb(self._input_val.get())
+
+        self._top.destroy()
+
+    def _cancel(self) -> None:
         self._top.destroy()
