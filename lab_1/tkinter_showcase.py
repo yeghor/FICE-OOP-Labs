@@ -49,6 +49,9 @@ def button_counter_callback(label: tk.Label, counter_template: Template, counter
 counter_button = tk.Button(root, text="Hello!", width=25, command=button_counter_callback)
 counter_button.pack()
 
+counter_button = tk.Button(root, text="Hi!", width=25, command=button_counter_callback)
+counter_button.pack()
+
 kill_buttom = tk.Button(root, text="KILL", width=25, command=root.destroy)
 kill_buttom.pack()
 
