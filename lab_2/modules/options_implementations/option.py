@@ -1,17 +1,32 @@
 import tkinter as tk
-from typing import Callable, Any
+from abc import ABC, abstractmethod
+from typing import Any, Callable, Dict, List
 
 
-class BaseOption:
-    def __init__(self, compile_cb: Callable[[tk.Button], None] | None = None):
-        self.compile_cb = compile_cb
-        self.widget: tk.Widget | None = None
+class BaseDropdownOptions(ABC):
+    def __init__(self, root: tk.Misc, options_cbs: Dict[str, Callable[[Any], None]], readable_options: List[str] | None = None):
+        self.root = root
+        self._label = "Menu"
+        self._options = list(options_cbs.keys()) if readable_options is None else readable_options
+        self._options_cbs = options_cbs
+        self._menu = tk.Menu(root, tearoff=0)
+        self._attach_menu_items()
 
-    def bind(self, widget: tk.Widget, *args: Any, **kwargs: Any) -> None:
-        self.widget = widget
-        if self.compile_cb is not None:
-            self.compile_cb(widget, *args, **kwargs)
+    def _attach_menu_items(self) -> None:
+        for option in self._options:
+            callback = self._options_cbs.get(option)
+            self._menu.add_command(label=option, command=lambda value=option: self._select_option(value))
 
-    def render(self) -> None:
-        return None
+    def _select_option(self, option: str) -> None:
+        callback = self._options_cbs.get(option)
+        if callback is not None:
+            callback(option)
+
+    @property
+    def chosen_option(self) -> str:
+        return self._label
+
+    @abstractmethod
+    def render(self, parent: tk.Misc | None = None) -> None:
+        ...
     

@@ -4,9 +4,10 @@ from typing import List
 
 class Canvas:
     def __init__(self,
-        root: tk.Tk,
+        root: tk.Misc,
+        render: bool = False
     ):
-        self._canvas = tk.Canvas(root, bg="red")
+        self._canvas = tk.Canvas(root, bg="white")
 
         self._canvas.bind("<ButtonPress>", self._mouse_start_drawing_cb)
         self._canvas.bind("<Motion>", self._mouse_drawing_cb)
@@ -25,11 +26,15 @@ class Canvas:
         self._x_start: int | None = None
         self._y_start: int | None = None
 
-        self._canvas.pack()
+        if render:
+            render()
 
     @property
     def curr_shape(self) -> ShapesKeys | None:
         return self._curr_shape_key
+
+    def render(self) -> None:
+        self._canvas.pack()
 
     def _create_rubber_path(self, x_start: int, y_start: int) -> None:
         self._x_start = x_start
@@ -37,7 +42,7 @@ class Canvas:
         self._rubber_path_canvas_internal_id = self._canvas.create_rectangle(
             self._x_start, self._y_start,
             self._x_start, self._y_start,
-            fill="blue", outline="black"
+            outline="black"
         )
 
     def _update_rubber_path(self, end_x: int, end_y: int) -> None:

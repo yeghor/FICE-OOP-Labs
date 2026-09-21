@@ -5,17 +5,14 @@ from .shape_ellipse import ShapeEllipse
 from .shape_line import ShapeLine
 from .shape_point import ShapePoint
 from .shape_rect import ShapeRect
+from .types import ShapesKeys
 
-
-ShapesKeys = Literal["RECTANGLE", "POINT", "LINE", "ELLIPSE"]
 SHAPES_MAP: Dict[ShapesKeys, Type[ShapeAbstract]] = {
     "RECTANGLE": ShapeRect,
     "POINT": ShapePoint,
     "LINE": ShapeLine,
     "ELLIPSE": ShapeEllipse,
 }
-
-SHAPES = SHAPES_MAP
 
 
 class ShapeFactory:

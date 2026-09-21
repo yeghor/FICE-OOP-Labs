@@ -1,6 +1,7 @@
 import tkinter as tk
 from .shape_abstract import ShapeAbstract
 
+
 class ShapeLine(ShapeAbstract):
     _DEFAULT_COLOR = "black"
 
@@ -8,7 +9,9 @@ class ShapeLine(ShapeAbstract):
         super().__init__(canvas)
 
     def render(self) -> None:
-        self.internal_canvas_id = self._canvas.create_line(
+        self._internal_canvas_id = self._canvas.create_line(
             self._x1, self._y1,
             self._x2, self._y2,
+            fill=self._DEFAULT_COLOR,
         )
+        self._is_rendered = True
