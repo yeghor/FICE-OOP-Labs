@@ -39,8 +39,8 @@ class InputModuleAbstract(ABC):
 
     @abstractmethod
     def _submit(self) -> None:
-        raise NotImplementedError("Not implemented!")
+        ...
 
     @abstractmethod
     def _cancel(self) -> None:
-        raise NotImplementedError("Not implemented!")
+        ...

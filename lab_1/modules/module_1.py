@@ -1,7 +1,7 @@
 """Dropdown module with five selectable options."""
 
 import tkinter as tk
-from typing import List, Callable
+from typing import Callable
 
 from .module_abstract import InputModuleAbstract
 
@@ -10,8 +10,7 @@ class ListboxModule(InputModuleAbstract):
     def __init__(
         self,
         root: tk.Tk,
-        cb: Callable[[str], None],
-        options: List[str] = None,
+        cb: Callable[[str], None] | None,
     ):
         super().__init__(root, "listbox_module", align_buttons=True)
 
