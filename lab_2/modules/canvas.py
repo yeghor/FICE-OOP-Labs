@@ -27,7 +27,7 @@ class Canvas:
         self._y_start: int | None = None
 
         if render:
-            render()
+            self.render()
 
     @property
     def curr_shape(self) -> ShapesKeys | None:

@@ -22,10 +22,10 @@ class ShapeOption(BaseDropdownOptions):
         self.button.pack(in_=target, side=tk.LEFT, padx=(0, 8), pady=4)
 
     def _set_shape(self, shape_name: ShapesKeys | None):
-        self._label = shape_name.title()
-
-        if ShapesKeys is None:
+        if shape_name is None:
             self._label = "No Shape"
+        else:
+            self._label = shape_name.title()
 
         self.button.config(text=self._label)
         self._switch_shape_cb(shape_name)

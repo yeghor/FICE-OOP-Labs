@@ -19,7 +19,7 @@ class ListboxModule(InputModuleAbstract):
 
         self._cb = cb
 
-        self._options = ("Apple", "Banana", "Cherry", "Orange", "Strawberry")
+        self._options = ("ІМ-о51", "IM-51", "IM-52", "IM-53", "IM-54", "IM-55")
         self._selected_value = tk.StringVar(self._top, value=self._options[0])
 
         self._dropdown = tk.OptionMenu(self._top, self._selected_value, *self._options)
