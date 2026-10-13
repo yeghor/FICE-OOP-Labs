@@ -1,5 +1,5 @@
 import tkinter as tk
-from modules import Canvas, Options
+from .modules import Canvas, Options
 
 
 class App(tk.Tk):

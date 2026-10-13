@@ -1,6 +1,6 @@
 import tkinter as tk
 from typing import Type
-from modules import *
+from .modules import *
 
 root = tk.Tk(screenName="main", baseName="lab-1")
 root.geometry("500x400")
