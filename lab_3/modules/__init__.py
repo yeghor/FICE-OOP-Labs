@@ -13,7 +13,6 @@ __all__ = [
     "ShapeLine",
     "ShapeRect",
     "ShapeEllipse",
-    "EditorCanvas",
     "ShapesKeys",
     "SHAPES_MAP",
 ]
