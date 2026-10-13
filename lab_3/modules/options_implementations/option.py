@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List
 
 class BaseDropdownOptions(ABC):
     def __init__(self, root: tk.Misc, options_cbs: Dict[str, Callable[[Any], None]], readable_options: List[str] | None = None):
-        self.root = root
+        self._root = root
         self._label = "Menu"
         self._options = list(options_cbs.keys()) if readable_options is None else readable_options
         self._options_cbs = options_cbs

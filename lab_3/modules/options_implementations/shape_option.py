@@ -18,7 +18,7 @@ class ShapeOption(BaseDropdownOptions):
         self.button = tk.Button(root, text=self._label, command=lambda: self._menu.post(root.winfo_rootx() + 10, root.winfo_rooty() + 30))
 
     def render(self, parent: tk.Misc | None = None) -> None:
-        target = parent if parent is not None else self.root
+        target = parent if parent is not None else self._root
         self.button.pack(in_=target, side=tk.LEFT, padx=(0, 8), pady=4)
 
     def _set_shape(self, shape_name: ShapesKeys | None):

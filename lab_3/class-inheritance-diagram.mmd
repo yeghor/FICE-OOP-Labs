@@ -1,0 +1,95 @@
+---
+title: Class Inheritance Diagram
+---
+classDiagram
+    %% * - abstract, $ - static
+    %% + - public, - - private, # - protected
+
+    class ShapeAbstract {
+        <<abstract>>
+        -CanvasWidget _canvas
+        -int_or_None _x1
+        -int_or_None _x2
+        -int_or_None _y1
+        -int_or_None _y2
+        -int_or_None _internal_canvas_id
+        -bool _is_rendered
+        +__init__(canvas)
+        +internal_canvas_id() int_or_None
+        +is_rendered() bool
+        +is_rendered(value) None
+        +render() None*
+        +dispose() None
+        +update_position(coords) None
+    }
+
+    ShapeAbstract <|-- ShapePoint
+    ShapeAbstract <|-- ShapeEllipse
+    ShapeAbstract <|-- ShapeRect
+    ShapeAbstract <|-- ShapeLine
+
+    class BaseDropdownOptions {
+        <<abstract>>
+        -tk.Misc _root
+        -str _label
+        -List _options
+        -Dict _options_cbs
+        -tk.Menu _menu
+        +__init__(root, options_cbs, readable_options)
+        -_attach_menu_items() None
+        -_select_option(option) None
+        +chosen_option() str
+        +render(parent) None*
+    }
+
+    BaseDropdownOptions <|-- ShapeOption
+    BaseDropdownOptions <|-- RefOption
+    BaseDropdownOptions <|-- FileOption
+
+    class ShapePoint {
+        -str _DEFAULT_COLOR$
+        +__init__(canvas)
+        +render() None
+    }
+
+    class ShapeEllipse {
+        -str _DEFAULT_COLOR$
+        +__init__(canvas)
+        +render() None
+    }
+
+    class ShapeRect {
+        -None _DEFAULT_COLOR$
+        +__init__(canvas)
+        +render() None
+    }
+
+    class ShapeLine {
+        -str _DEFAULT_COLOR$
+        +__init__(canvas)
+        +render() None
+    }
+
+    class ShapeOption {
+        -SwitchShapeCb _switch_shape_cb
+        -tk.Button button
+        +__init__(root, switch_shape_cb)
+        +render(parent) None
+        -_set_shape(shape_name) None
+    }
+
+    class RefOption {
+        -tk.PhotoImage _image
+        -tk.Button button
+        +__init__(root)
+        +render(parent) None
+        +refresh(args, kwargs) None
+    }
+
+    class FileOption {
+        -tk.PhotoImage _image
+        -tk.Button button
+        +__init__(root)
+        +render(parent) None
+        +open_file(args, kwargs) None
+    }
