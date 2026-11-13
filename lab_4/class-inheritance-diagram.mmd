@@ -1,0 +1,41 @@
+---
+title: Lab 4 Class Inheritance Diagram
+---
+classDiagram
+    class BaseOption {
+        <<abstract>>
+        +render(parent)*
+    }
+
+    class BaseDropdownOptions {
+        <<abstract>>
+        +chosen_option
+    }
+
+    class ShapeOption
+    class FileOption
+    class RefOption
+
+    BaseOption <|-- BaseDropdownOptions
+    BaseOption <|-- ShapeOption
+    BaseDropdownOptions <|-- FileOption
+    BaseDropdownOptions <|-- RefOption
+
+    class ShapeAbstract {
+        <<abstract>>
+        +show()*
+    }
+
+    class ShapePoint
+    class ShapeLine
+    class ShapeLineWithCircles
+    class ShapeRect
+    class ShapeEllipse
+    class ShapeCubeFrame
+
+    ShapeAbstract <|-- ShapePoint
+    ShapeAbstract <|-- ShapeLine
+    ShapeAbstract <|-- ShapeLineWithCircles
+    ShapeAbstract <|-- ShapeRect
+    ShapeAbstract <|-- ShapeEllipse
+    ShapeAbstract <|-- ShapeCubeFrame
