@@ -83,6 +83,12 @@ class Canvas:
         self._x_start = event.x
         self._y_start = event.y
 
+        if self._curr_shape:
+            self._curr_shape.update_position(
+                self._x_start, event.x,
+                self._y_start, event.y
+            )
+
         self._is_drawing = True
         self._create_rubber_path(self._x_start, self._y_start)
 

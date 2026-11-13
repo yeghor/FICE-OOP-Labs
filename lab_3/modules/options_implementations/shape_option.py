@@ -16,7 +16,7 @@ class ShapeOption:
     _SHAPES: List[Tuple[ShapesKeys, str, str]] = [
         ("POINT", "Point", "point_shape_option.png"),
         ("LINE", "Line", "line_shape_option.png"),
-        ("RECTANGLE", "Rectangle", "rect_shape_option.png"),
+        ("RECTANGLE", "Rectangle", "rectangle_shape_option.png"),
         ("ELLIPSE", "Ellipse", "ellipse_shape_option.png"),
     ]
 
