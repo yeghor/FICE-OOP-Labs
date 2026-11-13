@@ -65,6 +65,7 @@ class Canvas:
         
     def _switch_shape_cb(self, key: ShapesKeys | None) -> None:
         if key is None:
+            self._curr_shape_key = None
             self._curr_shape = None
             return
 

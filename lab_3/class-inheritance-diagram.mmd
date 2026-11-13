@@ -42,7 +42,6 @@ classDiagram
         +render(parent) None*
     }
 
-    BaseDropdownOptions <|-- ShapeOption
     BaseDropdownOptions <|-- RefOption
     BaseDropdownOptions <|-- FileOption
 
@@ -71,10 +70,20 @@ classDiagram
     }
 
     class ShapeOption {
+        -int _ICON_SIZE$
+        -Path _ICONS_DIR$
+        -List _SHAPES$
+        -tk.Misc _root
         -SwitchShapeCb _switch_shape_cb
-        -tk.Button button
+        -ShapesKeys_or_None _chosen_shape
+        -Dict _images
+        -Dict _buttons
         +__init__(root, switch_shape_cb)
+        +chosen_shape() ShapesKeys_or_None
+        -_load_icon(icon_name) tk.PhotoImage_or_None
+        -_create_button(key, label, icon_name) tk.Button
         +render(parent) None
+        -_toggle_shape(key) None
         -_set_shape(shape_name) None
     }
 
