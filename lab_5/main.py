@@ -18,7 +18,6 @@ class App(tk.Tk):
         self._options = Options(self, self._editor._switch_shape_cb, self._editor.get_shapes_data)
         self._editor.render()
 
-
 if __name__ == "__main__":
     app = App(screenName="canvas", baseName="lab-5")
     app.mainloop()
