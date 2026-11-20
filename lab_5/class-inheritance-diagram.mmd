@@ -1,0 +1,64 @@
+---
+title: Lab 5 Class Inheritance Diagram
+---
+classDiagram
+    class BaseOption {
+        <<abstract>>
+        +render(parent)*
+    }
+
+    class BaseDropdownOptions {
+        <<abstract>>
+        +chosen_option
+    }
+
+    class ShapeOption
+    class FileOption
+    class RefOption
+    class TableModalOption
+    class DraftModalWindow
+
+    BaseOption <|-- BaseDropdownOptions
+    BaseOption <|-- ShapeOption
+    BaseOption <|-- TableModalOption
+    BaseDropdownOptions <|-- FileOption
+    BaseDropdownOptions <|-- RefOption
+    Toplevel <|-- DraftModalWindow
+
+    class ShapeAbstract {
+        <<abstract>>
+        +name: str
+        +position: tuple[int, int]
+        +show()*
+    }
+
+    class ShapePoint {
+        _NAME = "Point"
+    }
+
+    class ShapeLine {
+        _NAME = "Line"
+    }
+
+    class ShapeLineWithCircles {
+        _NAME = "Line with circles"
+    }
+
+    class ShapeRect {
+        _NAME = "Rectangle"
+    }
+
+    class ShapeEllipse {
+        _NAME = "Ellipse"
+    }
+
+    class ShapeCubeFrame {
+        _NAME = "Cube frame"
+    }
+
+    ShapeAbstract <|-- ShapePoint
+    ShapeAbstract <|-- ShapeLine
+    ShapeAbstract <|-- ShapeLineWithCircles
+    ShapeAbstract <|-- ShapeRect
+    ShapeAbstract <|-- ShapeEllipse
+    ShapeAbstract <|-- ShapeCubeFrame
