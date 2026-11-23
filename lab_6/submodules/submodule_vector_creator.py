@@ -88,7 +88,7 @@ class Window(tk.Tk):
             curr_vector_val += factor
             curr_vector_val = round(curr_vector_val, 2)
 
-        return vector
+        return list(reversed(vector))
 
     def _update_vector(self) -> None:
         vector = self._calculate_vector()
