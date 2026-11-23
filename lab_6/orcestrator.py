@@ -1,7 +1,4 @@
-"""AKA Lab-6"""
-
 import subprocess
-import os
 import time
 
 if __name__ == "__main__":
