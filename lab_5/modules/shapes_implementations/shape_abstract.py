@@ -25,6 +25,17 @@ class ShapeAbstract(ABC):
         return int(self._x1), int(self._y1)
 
     @property
+    def coordinates(self) -> tuple[int, int, int, int]:
+        if (
+            self._x1 is None
+            or self._y1 is None
+            or self._x2 is None
+            or self._y2 is None
+        ):
+            raise ValueError("Shape coordinates are not set")
+        return int(self._x1), int(self._y1), int(self._x2), int(self._y2)
+
+    @property
     def internal_canvas_id(self) -> int | None:
         return self._internal_canvas_id
 

@@ -6,4 +6,12 @@ from .shape_line_with_circles import ShapeLineWithCircles
 from .shape_point import ShapePoint
 from .shape_rect import ShapeRect
 from .shape_factory import ShapeFactory, SHAPES_MAP
-from .types import ShapesKeys, SwitchShapeCb, ShapesData, ShapesDataCb
+from .types import (
+    ShapeFileData,
+    ShapesData,
+    ShapesDataCb,
+    ShapesFileData,
+    ShapesFileDataCb,
+    ShapesKeys,
+    SwitchShapeCb,
+)

@@ -1,6 +1,11 @@
 import tkinter as tk
-from .shapes_implementations import ShapeFactory, ShapeAbstract, ShapesKeys, ShapesData
-from .shapes_implementations.types import ShapesData
+from .shapes_implementations import (
+    ShapeAbstract,
+    ShapeFactory,
+    ShapesData,
+    ShapesFileData,
+    ShapesKeys,
+)
 from typing import List, Dict, Tuple
 import threading
 
@@ -79,6 +84,13 @@ class MyEditor:
             shapes_data[name] = shape.position
 
         return shapes_data
+
+    def get_shapes_for_save(self) -> ShapesFileData:
+        return [
+            {"type": shape.name, "coordinates": shape.coordinates}
+            for shape in self._shapes_stack
+            if shape.is_rendered
+        ]
 
     def render(self) -> None:
         self._canvas.pack()

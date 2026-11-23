@@ -11,7 +11,7 @@ class DraftModalWindow(tk.Toplevel):
         super().__init__(root)
         self._on_close = on_close
 
-        self.title("Draft modal window")
+        self.title("Table representation of the Editor")
         self.geometry("360x180")
         self.minsize(360, 180)
         self.resizable(False, False)
